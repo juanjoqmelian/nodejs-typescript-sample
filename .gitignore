@@ -1,6 +1,5 @@
 node_modules
 .tscache
-typings
 coverage
 .idea
 *.iml

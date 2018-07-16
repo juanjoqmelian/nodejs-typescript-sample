@@ -1,25 +1,34 @@
 import {EmployeeController} from './employee-controller';
-import {Employee} from '../employee';
+import {Employee} from '../domain/employee';
+import {EmployeeRepository} from '../repository/employee-repository';
 
 
 describe('EmployeeController', () => {
 
-    let employeeController: EmployeeController = new EmployeeController();
+    let employeeController: EmployeeController;
+
+    const employeeRepositoryStub: EmployeeRepository = {
+        findAll: () => {}
+    } as EmployeeRepository;
+
 
     beforeEach(() => {
 
-
+        employeeController = new EmployeeController(employeeRepositoryStub);
     });
+
 
     describe('#findAll', () => {
 
         it('should return existing employees', () => {
 
             const expectedEmployees: Employee[] = [
-                new Employee('Juan', 27),
-                new Employee('Pepe', 31),
-                new Employee('Amaya', 25)
+                new Employee(1, 'Juan', 27),
+                new Employee(2, 'Pepe', 31),
+                new Employee(3, 'Amaya', 25)
             ];
+
+            spyOn(employeeRepositoryStub, 'findAll').and.returnValue(expectedEmployees);
 
             const employees = employeeController.findAll();
 

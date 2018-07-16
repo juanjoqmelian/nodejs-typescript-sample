@@ -21,14 +21,15 @@
     "chai": "^4.1.2",
     "jasmine-console-reporter": "^3.0.2",
     "jasmine-ts": "^0.2.1",
+    "jasmine-ts-console-reporter": "^3.1.1",
     "nodemon": "^1.18.2",
     "supertest": "^3.1.0"
   },
   "scripts": {
     "dev": "nodemon --exec 'ts-node --cache-directory .tscache' src/server.ts",
     "start": "ts-node --fast dist/src/server.ts",
-    "test": "jasmine-ts '!(node_modules)/**/*+(.spec|.specs)'.ts",
-    "integration-test": "jasmine-ts '!(node_modules)/**/*+(.integration-spec|.integration-specs)'.ts"
+    "test": "jasmine-ts --reporter=jasmine-ts-console-reporter '!(node_modules)/**/*+(.spec|.specs)'.ts",
+    "integration-test": "jasmine-ts --reporter=jasmine-ts-console-reporter '!(node_modules)/**/*+(.integration-spec|.integration-specs)'.ts"
   },
   "keywords": [],
   "author": "",
